@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!--<meta name="csrf-param" content="authenticity_token" />-->
+    <!--<meta name="csrf-token" content="nS80ADmfZATdwxg_D0zMtG9xCieQfg_xGGL2WfSrsca7Kpo8cK8SRhyRR55Z4JZymRVyfMdT3hD-iMjcnOc7RA" />-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">-->
+    <!--<link rel="stylesheet" media="all" href="/packs/css/application-859f38f5.css" data-turbolinks-track="reload" />-->
+    <!--<script src="/packs/js/application-8c498bd08fe3c47f4c35.js" data-turbolinks-track="reload"></script>-->
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/"><span>Bookers</span></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+                <%= link_to users_path(current_user.id), class:"nav-link text-light" do %>
+                  <i class="fas fa-home"></i> Home
+                <% end %>
+
+                <%= link_to destroy_user_session_path, method: :delete , class:"nav-link text-light" do %>
+                  <i class="fas fa-sign-out-alt"></i> Log out
+                <% end %>
+
+                  <%= link_to users_path, class:"nav-link text-light" do %>
+                  <i class="fas fa-users"></i> Users
+                <% end %>
+
+                <%= link_to books_path, class:"nav-link text-light" do %>
+                  <i class="fas fa-book-open"></i> Books
+                <% end %>
+              <% else %>
+                      <li>
+                        <a class="nav-link text-light" href="/">
+                          <i class="fas fa-home"></i> Home
+            </a>          </li>
+                <%= link_to about_path, class:"nav-link text-light" do %>
+                  <i class="fas fa-link"></i> About
+                <% end %>
+
+                      <li>
+                        <a class="nav-link text-light" href="/users/sign_up">
+                          <i class="fas fa-user-plus"></i> Sign up
+            </a>          </li>
+                      <li>
+                        <a class="nav-link text-light" href="/users/sign_in">
+                          <i class="fas fa-sign-in-alt"></i> Log in
+            </a>          </li>
+                    </ul>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <%= yield %>
+      <footer>
+      <div class='container mt-5'>
+      	<div class='row'>
+        	<div class='mx-auto'>
+        		<p>CopyRight Infratop.inc</p>
+        	</div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
