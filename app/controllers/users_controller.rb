@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       @users = User.all
 
       # ユーザに紐づくブックデータを取得する
-      @books = @user.book
+      @books = @user.books
 
       @book = Book.new
   end
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
 
       # 該当のユーザに紐づくブックデータを取得する
-      @books = @user.book
+      @books = @user.books
 
       @book = Book.new
   end

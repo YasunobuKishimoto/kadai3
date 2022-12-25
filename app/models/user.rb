@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
     #「1:Nの1側が削除されたとき、N側を全て削除する」という機能が追加されます。
   #ほとんどの場合「has_many」には「dependent: :destroy」を付けて実装するのでセットで覚えておきましょう。
-   has_many :book, dependent: :destroy
+   has_many :books, dependent: :destroy
   # has_many :, dependent: :destroy
   # has_many :, dependent: :destroy
 
@@ -15,7 +15,8 @@ class User < ApplicationRecord
    has_one_attached :profile_image
 
   # バリデーション
-  validates :name, presence: true,length: { minimum: 2, maximum: 20 }
+  validates :name, presence: true,length: { minimum: 2, maximum: 20 },uniqueness: { case_sensitive: false }
+  validates :introduction,length: { maximum: 50 }
 
   # 共通処理 メソッドに対して引数を設定し、引数に設定した値に画像のサイズを変換する
   def get_profile_image(width, height)
