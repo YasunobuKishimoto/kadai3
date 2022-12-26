@@ -48,8 +48,14 @@ class UsersController < ApplicationController
     @user.update(user_params)
 
     if @user.save
+      #フラッシュメッセージを設定する
+      flash[:notice]="You have updated user successfully."
+
       redirect_to user_path(@user.id)
     else
+        #フラッシュメッセージを設定する
+      flash[:notice]="Error."
+
       render :edit
     end
   end

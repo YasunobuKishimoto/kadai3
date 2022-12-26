@@ -29,6 +29,11 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    edit_user_id = @book.user_id.to_i
+
+    if edit_user_id != current_user.id
+      redirect_to books_path
+    end
   end
 
   def new
@@ -44,8 +49,8 @@ class BooksController < ApplicationController
       #フラッシュメッセージを設定する
       flash[:notice]="Book was successfully created."
 
-      #redirect_to book_path(@book.user_id)
       redirect_to book_path(@book.id)
+      #redirect_to user_path(@book.user_id)
     else
       #フラッシュメッセージを設定する
       flash[:notice]="Error."

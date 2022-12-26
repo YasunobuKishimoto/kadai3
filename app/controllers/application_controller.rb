@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 #ログイン認証が成功していないと、トップページ以外の画面（ログインと新規登録は除く）は表示できない
 #すべてのコントローラで、最初にbefore_actionメソッドが実行されます。
-before_action :authenticate_user!, except: [:top]
+before_action :authenticate_user!, except: [:top,:about]
 
 before_action :configure_permitted_parameters, if: :devise_controller?
   #deviseのサインアップ後の処理
